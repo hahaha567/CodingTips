@@ -1,0 +1,4 @@
+##CASE1
+1.主要是利用BeanPostProcessor的postProcessAfterInitialization方法实现Handler的注入，后续如果有更多的Handler的话，只需添加新的Handler的实现即可，无需改变注入代码
+
+2.Handler注解中的type字段用于后续扩展，以支持将不同的Handler注入到不同的Factory类中
