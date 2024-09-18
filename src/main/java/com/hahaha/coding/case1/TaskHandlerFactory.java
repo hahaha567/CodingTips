@@ -1,18 +1,28 @@
 package com.hahaha.coding.case1;
 
 import com.hahaha.coding.case1.handler.TaskHandler;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
-import java.util.HashMap;
-import java.util.Map;
+@Slf4j
+@Getter
+public enum TaskHandlerFactory {
+    PIN_DETECTION("PIN_DETECTION"),
+    XCU_DETECTION("XCU_DETECTION"),
+    TEMPLATE("TEMPLATE");
 
-public class TaskHandlerFactory {
-    private static Map<String, TaskHandler> taskHandlerMap = new HashMap<>();
+    private final String label;
 
-    public static void register(String name, TaskHandler handler) {
-        taskHandlerMap.put(name, handler);
+    @Setter
+    private TaskHandler taskHandler;
+
+    private TaskHandlerFactory(String label) {
+        this.label = label;
     }
 
-    public static TaskHandler getHandler(String name) {
-        return taskHandlerMap.get(name);
+    public static void register(String label, TaskHandler handler) {
+        log.info("handler label is {}", label);
+        TaskHandlerFactory.valueOf(label).setTaskHandler(handler);
     }
 }

@@ -10,7 +10,9 @@ public class HandlerRegister implements BeanPostProcessor {
     public void register(TaskHandler handler) {
         if (handler.getClass().isAnnotationPresent(Handler.class)) {
             Handler tag = handler.getClass().getAnnotation(Handler.class);
-            TaskHandlerFactory.register(tag.name(), handler);
+            for (String name : tag.data()) {
+                TaskHandlerFactory.register(name, handler);
+            }
         }
     }
 

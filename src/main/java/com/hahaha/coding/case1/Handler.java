@@ -8,6 +8,8 @@ import java.lang.annotation.*;
 public @interface Handler {
     String name() default "";
 
+    String[] data() default "";
+
     /**
      * 可用于扩展，将不同的handler注入到不同的factory里面
      */
